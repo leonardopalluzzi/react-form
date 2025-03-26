@@ -3,7 +3,7 @@ export default function Input({ newArticle, setNewArticle, handleSubmit }) {
         <div className="container">
             <form className='insert_form d-flex flex-column my-5' onSubmit={e => handleSubmit(e, newArticle)} action="">
                 <input
-                    className="col-8"
+                    className="col-8 form-control"
                     onChange={(e) => setNewArticle(e.target.value)}
                     value={newArticle} type="text"
                     placeholder="Insert the article's title" />

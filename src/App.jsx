@@ -24,7 +24,10 @@ function App() {
           <h1>Articles</h1>
         </div>
       </header>
-      <Articles data={articles} />
+      <div className="container_articles position-relative">
+        <Articles data={articles} />
+      </div>
+
     </>
   )
 }

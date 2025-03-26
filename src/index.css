@@ -16,10 +16,30 @@
 
 .edit_layout {
   position: absolute;
-  background-color: white;
-  height: 100vh;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100%;
+}
+
+.container_articles {
+  height: 60vh;
+}
+
+.close_btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.container_overlay {
+  padding: 8rem 4rem;
+  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.226);
+  backdrop-filter: blur(5px);
+  color: white;
+  box-shadow: 1px 2px 3px black;
+  width: 80%;
 }
