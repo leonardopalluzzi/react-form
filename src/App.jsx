@@ -34,6 +34,7 @@ function App() {
   const [newArticle, setNewArticle] = useState('')
   const [articlelesList, setNewList] = useState(articles)
   const [display, setDisplay] = useState('d-none')
+  const [itemId, setItemId] = useState('')
 
   function handleSubmit(e, newArticle){
     e.preventDefault()
@@ -56,24 +57,34 @@ function App() {
     
   }
 
-  function handleEdit(){
+  function handleEdit(id){
     console.log('modify');
     setDisplay('d-block')
+    setItemId(id)
     
   }
 
   function handleUpdate(e, newArticle){
     e.preventDefault()
     console.log('submit');
+    console.log(articlelesList);
+    
 
-    setNewList(articlelesList, {
-      id: nextId++,
-      title: newArticle
+    const updatedList = articlelesList.map(item => {
+      
+      if(item.id == itemId){
+        return {
+          ...item,
+          title: newArticle
+        }
+      }
     })
 
+    setNewList(updatedList)
     setNewArticle('')
+    setDisplay('d-none')
 
-    console.log(articlelesList);
+    console.log(updatedList);
     
   }
 
@@ -83,9 +94,9 @@ function App() {
     <div className={`edit_layout ${display}`}>
       <button onClick={() => setDisplay('d-none')}>X</button>
       <div onSubmit={e => handleUpdate(e, newArticle)} className="container">
-        <form action="">
+        <form id='update-form' action="">
           <input onChange={(e) => setNewArticle(e.target.value)} value={newArticle} type="text" />
-          <button type="submit" className="btn btn-primary mx-4">Add</button>
+          <button type="submit" className="btn btn-primary mx-4">Save</button>
         </form>
       </div>
     </div>
@@ -103,7 +114,7 @@ function App() {
         </div>
       ))}
       <div className="container">
-        <form onSubmit={e => handleSubmit(e, newArticle)} action="">
+        <form id='insert-form' onSubmit={e => handleSubmit(e, newArticle)} action="">
           <input onChange={(e) => setNewArticle(e.target.value)} value={newArticle} type="text" />
           <button type="submit" className="btn btn-primary mx-4">Add</button>
         </form>
