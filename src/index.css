@@ -1,12 +1,24 @@
 @import "bootstrap";
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.edit_layout{
+.art_list {
+  list-style: none;
+
+  li {
+    width: 100%;
+  }
+}
+
+.insert_form {
+  display: flex;
+}
+
+.edit_layout {
   position: absolute;
   background-color: white;
   height: 100vh;

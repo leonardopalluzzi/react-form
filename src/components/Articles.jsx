@@ -23,7 +23,6 @@ export default function Articles({ data }) {
             }
         }
 
-
         return id + 1;
     }
 
@@ -39,7 +38,6 @@ export default function Articles({ data }) {
 
         setNewArticle('')
     }
-    console.log(articlesList);
 
     function handleDelete(id) {
         console.log('delete');
@@ -86,7 +84,7 @@ export default function Articles({ data }) {
     return (
         <>
             <UpdateOverlay display={display} setDisplay={setDisplay} handleUpdate={handleUpdate} newArticle={newArticle} setNewArticle={setNewArticle} />
-            <div className="container w-50">
+            <div className="container">
                 <List articlesList={articlesList} handleEdit={handleEdit} handleDelete={handleDelete} />
                 <Input newArticle={newArticle} setNewArticle={setNewArticle} handleSubmit={handleSubmit} />
             </div>

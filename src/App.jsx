@@ -19,6 +19,11 @@ function App() {
 
   return (
     <>
+      <header>
+        <div className="container text-center py-5">
+          <h1>Articles</h1>
+        </div>
+      </header>
       <Articles data={articles} />
     </>
   )
