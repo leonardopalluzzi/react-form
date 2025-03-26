@@ -14,10 +14,6 @@
   }
 }
 
-.insert_form {
-  display: flex;
-}
-
 .edit_layout {
   position: absolute;
   background-color: white;
