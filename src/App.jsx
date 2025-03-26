@@ -33,6 +33,7 @@ function App() {
 
   const [newArticle, setNewArticle] = useState('')
   const [articlelesList, setNewList] = useState(articles)
+  const [display, setDisplay] = useState('d-none')
 
   function handleSubmit(e, newArticle){
     e.preventDefault()
@@ -55,26 +56,61 @@ function App() {
     
   }
 
+  function handleEdit(){
+    console.log('modify');
+    setDisplay('d-block')
+    
+  }
+
+  function handleUpdate(e, newArticle){
+    e.preventDefault()
+    console.log('submit');
+
+    setNewList(articlelesList, {
+      id: nextId++,
+      title: newArticle
+    })
+
+    setNewArticle('')
+
+    console.log(articlelesList);
+    
+  }
+
 
   return (
     <>
-    <div className="container w-50">
-       {articlelesList.map(item => (
-        <div key={item.id} className="article my-4">
-          <ul className='row'>
-            <li><h3 className='col-8'>{item.title} <button onClick={() => handleDelete(item.id)} className='btn btn-danger col-4'>X</button></h3></li>
-          </ul>
-        </div>
-      ))}
-      <div onSubmit={e => handleSubmit(e, newArticle)} className="container">
+    <div className={`edit_layout ${display}`}>
+      <button onClick={() => setDisplay('d-none')}>X</button>
+      <div onSubmit={e => handleUpdate(e, newArticle)} className="container">
         <form action="">
           <input onChange={(e) => setNewArticle(e.target.value)} value={newArticle} type="text" />
           <button type="submit" className="btn btn-primary mx-4">Add</button>
         </form>
       </div>
     </div>
+    <div className="container w-50">
+       {articlelesList.map(item => (
+        <div key={item.id} className="article my-4">
+          <ul className='row'>
+            <li>
+              <h3 className='col-8'>{item.title} 
+                <button onClick={() => handleEdit(item.id)} className='btn btn-warning col-2 mx-4'>Edit</button>
+                <button onClick={() => handleDelete(item.id)} className='btn btn-danger col-2'>X</button>
+              </h3>
+            </li>
+          </ul>
+        </div>
+      ))}
+      <div className="container">
+        <form onSubmit={e => handleSubmit(e, newArticle)} action="">
+          <input onChange={(e) => setNewArticle(e.target.value)} value={newArticle} type="text" />
+          <button type="submit" className="btn btn-primary mx-4">Add</button>
+        </form>
+      </div>
+    </div>
      
-    </>
+  </>
   )
 }
 
