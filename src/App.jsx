@@ -1,3 +1,4 @@
+import {useState} from 'react'
 const articles = [
   {
     id: 1,
@@ -19,12 +20,33 @@ const articles = [
   }
 ]
 
+let nextId = 1;
+
+articles.forEach(item => {
+  nextId++
+})
+console.log(nextId);
+
+
 
 function App() {
 
-  function handleSubmit(e){
+  const [newArticle, setNewArticle] = useState('')
+  const [articlelesList, setNewList] = useState(articles)
+
+  function handleSubmit(e, newArticle){
     e.preventDefault()
     console.log('submit');
+
+    setNewList([...articlelesList, {
+      id: nextId++,
+      title: newArticle
+    }])
+
+    setNewArticle('')
+
+    console.log(articlelesList);
+    
     
   }
 
@@ -32,16 +54,16 @@ function App() {
   return (
     <>
     <div className="container w-50">
-       {articles.map(item => (
+       {articlelesList.map(item => (
         <div key={item.id} className="article my-4">
           <ul>
             <li><h3>{item.title}</h3></li>
           </ul>
         </div>
       ))}
-      <div onSubmit={e => handleSubmit(e)} className="container">
+      <div onSubmit={e => handleSubmit(e, newArticle)} className="container">
         <form action="">
-          <input type="text" />
+          <input onChange={(e) => setNewArticle(e.target.value)} value={newArticle} type="text" />
           <button type="submit" className="btn btn-primary mx-4">Add</button>
         </form>
       </div>
