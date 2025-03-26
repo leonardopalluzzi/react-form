@@ -22,17 +22,31 @@ const articles = [
 
 function App() {
 
+  function handleSubmit(e){
+    e.preventDefault()
+    console.log('submit');
+    
+  }
+
 
   return (
     <>
-      {articles.map(item => (
-        <div className="container article">
+    <div className="container w-50">
+       {articles.map(item => (
+        <div key={item.id} className="article my-4">
           <ul>
             <li><h3>{item.title}</h3></li>
           </ul>
         </div>
-        
       ))}
+      <div onSubmit={e => handleSubmit(e)} className="container">
+        <form action="">
+          <input type="text" />
+          <button type="submit" className="btn btn-primary mx-4">Add</button>
+        </form>
+      </div>
+    </div>
+     
     </>
   )
 }
