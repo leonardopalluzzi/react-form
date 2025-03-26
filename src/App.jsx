@@ -47,6 +47,11 @@ function App() {
 
     console.log(articlelesList);
     
+  }
+
+  function handleDelete(id){
+    console.log('delete');
+    setNewList(articlelesList.filter(item => item.id != id))
     
   }
 
@@ -56,8 +61,8 @@ function App() {
     <div className="container w-50">
        {articlelesList.map(item => (
         <div key={item.id} className="article my-4">
-          <ul>
-            <li><h3>{item.title}</h3></li>
+          <ul className='row'>
+            <li><h3 className='col-8'>{item.title} <button onClick={() => handleDelete(item.id)} className='btn btn-danger col-4'>X</button></h3></li>
           </ul>
         </div>
       ))}
