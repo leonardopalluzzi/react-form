@@ -11,13 +11,29 @@ export default function Articles({ data }) {
     const [display, setDisplay] = useState('d-none')
     const [itemId, setItemId] = useState('')
 
+    let nextId = 0;
+
+    function idCalc(id) {
+        for (let i = 0; i < articlesList.length; i++) {
+            id = articlesList[i].id;
+            for (let j = 1; j < articlesList.length; j++) {
+                if (articlesList[j].id > id) {
+                    id = articlesList[j].id;
+                }
+            }
+        }
+
+
+        return id + 1;
+    }
 
     function handleSubmit(e, newArticle) {
         e.preventDefault()
         console.log('submit');
 
+
         setNewList([...articlesList, {
-            id: articlesList.length + 1,
+            id: idCalc(nextId),
             title: newArticle
         }])
 
