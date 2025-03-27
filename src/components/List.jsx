@@ -13,11 +13,6 @@ export default function List({ articlesList, handleEdit, handleDelete }) {
                             </div>
                         </div>
                     </div >
-
-
-
-
-
                 ))
             }
         </>
