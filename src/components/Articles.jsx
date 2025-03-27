@@ -31,15 +31,23 @@ export default function Articles({ data }) {
         e.preventDefault()
         console.log('submit');
 
+        if (newContent && newArticle) {
+            setNewList([...articlesList, {
+                id: idCalc(nextId),
+                title: newArticle,
+                content: newContent
+            }])
 
-        setNewList([...articlesList, {
-            id: idCalc(nextId),
-            title: newArticle,
-            content: newContent
-        }])
+            setNewArticle('')
+            setNewContent('')
+        } else {
+            alert('Per favore compilare i campi richiesti')
+        }
 
-        setNewArticle('')
-        setNewContent('')
+
+
+
+
     }
 
     function handleDelete(id) {
@@ -60,26 +68,33 @@ export default function Articles({ data }) {
         console.log('submit');
         console.log(articlesList);
 
+        if (newArticle) {
+            const updatedList = articlesList.map(item => {
 
-        const updatedList = articlesList.map(item => {
-
-            if (item.id == itemId) {
-                return {
-                    ...item,
-                    title: newArticle
+                if (item.id == itemId) {
+                    return {
+                        ...item,
+                        title: newArticle
+                    }
+                } else {
+                    return {
+                        ...item
+                    }
                 }
-            } else {
-                return {
-                    ...item
-                }
-            }
-        })
+            })
+            setNewList(updatedList)
+            setNewArticle('')
+            setDisplay('d-none')
 
-        setNewList(updatedList)
-        setNewArticle('')
-        setDisplay('d-none')
+            console.log(updatedList);
 
-        console.log(updatedList);
+        } else {
+            alert('Per favore compilare il campo richiesto')
+        }
+
+
+
+
 
     }
 

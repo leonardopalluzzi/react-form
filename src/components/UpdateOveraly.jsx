@@ -12,7 +12,9 @@ export default function UpdateOverlay({ display, setDisplay, handleUpdate, newAr
                             onChange={(e) => setNewArticle(e.target.value)}
                             value={newArticle}
                             type="text"
-                            placeholder="Insert the new title" />
+                            placeholder="Insert the new title"
+                            required
+                        />
                         <button type="submit" className="btn btn-primary">Save</button>
                     </form>
                 </div>
