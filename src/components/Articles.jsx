@@ -7,6 +7,7 @@ import UpdateOverlay from './UpdateOveraly'
 
 export default function Articles({ data }) {
     const [newArticle, setNewArticle] = useState('')
+    const [newContent, setNewContent] = useState('')
     const [articlesList, setNewList] = useState(data)
     const [display, setDisplay] = useState('d-none')
     const [itemId, setItemId] = useState('')
@@ -26,17 +27,19 @@ export default function Articles({ data }) {
         return id + 1;
     }
 
-    function handleSubmit(e, newArticle) {
+    function handleSubmit(e, newArticle, newContent) {
         e.preventDefault()
         console.log('submit');
 
 
         setNewList([...articlesList, {
             id: idCalc(nextId),
-            title: newArticle
+            title: newArticle,
+            content: newContent
         }])
 
         setNewArticle('')
+        setNewContent('')
     }
 
     function handleDelete(id) {
@@ -85,8 +88,11 @@ export default function Articles({ data }) {
         <>
             <UpdateOverlay display={display} setDisplay={setDisplay} handleUpdate={handleUpdate} newArticle={newArticle} setNewArticle={setNewArticle} />
             <div className="container">
-                <List articlesList={articlesList} handleEdit={handleEdit} handleDelete={handleDelete} />
-                <Input newArticle={newArticle} setNewArticle={setNewArticle} handleSubmit={handleSubmit} />
+                <div className="row">
+                    <List articlesList={articlesList} handleEdit={handleEdit} handleDelete={handleDelete} />
+                </div>
+
+                <Input setNewContent={setNewContent} newContent={newContent} newArticle={newArticle} setNewArticle={setNewArticle} handleSubmit={handleSubmit} />
             </div>
         </>
 
